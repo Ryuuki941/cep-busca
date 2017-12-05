@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import Variable from '../Variable/Variable'
+import Variable from '../Store/Variable'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
