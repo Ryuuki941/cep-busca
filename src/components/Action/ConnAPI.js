@@ -1,40 +1,33 @@
-import CEP from '../Store/Variable';
+import Variable from '../Store/Variable';
+import Jason from '../Store/Jeson'
 
+function doAPI (){
+  Variable.CEP = document.getElementById('CEP-value');
+  window.alert(Variable.CEP.value);
+  var url = 'https://viacep.com.br/ws/' + Variable.CEP.value + '/json/'
+  fetch(url).then(
+        function(res) {
+          if (res.status !== 200) {
+              window.alert('Looks like there was a problem. Status Code: ' +
+              res.status);
+              console.log(url,res,Variable.CEP.value) ;
+            return;
+          }
+    
+          // Examine the text in the response
+          res.json().then(function(data) {
+              console.log(data);
+              console.log("deu good");
+              Jason.push(data);
+              
+          });
+        }
+      )
+      .catch(function(err) {
+          window.alert('Fetch Error :-S', err);
+      });         
+      window.alert(Variable.CEP.value)
 
-var getJSON = function(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      var status = xhr.status;
-      if (status === 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status, xhr.response);
-      }
-    };
-    xhr.send();
-};
+    }
 
-
-getJSON('viacep.com.br/ws/' + CEP.value + '/json/',
-function(err, data) {
-  if (err !== null) {
-    alert('Something went wrong: ' + err);
-  } else {
-    alert('Your query count: ' + data.query.count);
-  }
-});
-
-class getJSON{
-let url = 'viacep.com.br/ws/' + CEP.value + '/json/'
-
-fetch(url)
-.then(res => res.json())
-.then((out) => {
-  console.log('Checkout this JSON! ', out);
-})
-.catch(err => { throw err });
-}
-
-export default getJSON;
+    export default doAPI;

@@ -8,8 +8,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
 import { green300, red300 } from 'material-ui/styles/colors';
-import Jason from '../Store/Jeson'
-
+import doAPI from '../Action/ConnAPI'
 
 const style1 = {
   margin: 0,
@@ -60,33 +59,7 @@ Variable.CEP = document.getElementsByName('CEP');
 
   handleCloseSearch = () => {
     this.setState({open: false});
-    Variable.CEP = document.getElementById('CEP-value');
-    window.alert(Variable.CEP.value);
-    var url = 'https://viacep.com.br/ws/' + Variable.CEP.value + '/json/'
-    fetch(url).then(
-          function(res) {
-            if (res.status !== 200) {
-                window.alert('Looks like there was a problem. Status Code: ' +
-                res.status);
-                console.log(url,res,Variable.CEP.value) ;
-              return;
-            }
-      
-            // Examine the text in the response
-            res.json().then(function(data) {
-                console.log(data);
-                console.log("deu good");
-                Jason.push(data);
-                
-            });
-          }
-        )
-        .catch(function(err) {
-            window.alert('Fetch Error :-S', err);
-        });         
-        window.alert(Variable.CEP.value)
-
-
+    doAPI();
   };
   handleCloseNormal = () => {
     this.setState({open: false});
