@@ -1,10 +1,10 @@
 
 
 class Jason{
-     putJson(params) {
-        JasonVector.push(params);
-    }
+    putJson(params) {
+       JasonVector.push(params);
+   }
 }
-    var JasonVector =[];
+   var JasonVector =[];
 
 export default JasonVector;
