@@ -4,6 +4,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Variable from '../Store/Variable'
+import Jason from '../Store/Jeson'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -39,7 +40,31 @@ class Header extends Component{
             label="Primary" 
             primary={true} 
             style={style}
-            onClick ={() =>  window.alert(Variable.CEP.value)}
+            onClick ={() =>{  
+                var url = 'https://viacep.com.br/ws/' + Variable.CEP.value + '/json/'
+                fetch(url)
+                .then(
+                  function(res) {
+                    if (res.status !== 200) {
+                        window.alert('Looks like there was a problem. Status Code: ' +
+                        res.status);
+                        console.log(url,res,Variable.CEP.value) ;
+                      return;
+                    }
+              
+                    // Examine the text in the response
+                    res.json().then(function(data) {
+                        console.log(data);
+                        Jason.push(data);
+                        
+                    });
+                  }
+                )
+                .catch(function(err) {
+                    window.alert('Fetch Error :-S', err);
+                });         
+                window.alert(Variable.CEP.value)}
+        }
             />
 
           </div>

@@ -66,13 +66,13 @@ Variable.CEP = document.getElementsByName('CEP');
   };
 
   onChange(event) {
-    if (event.target.value.length != 8) {
+    if (event.target.value.length !== 8) {
       this.setState({ errorText: 'Digite apenas 8 Digitos ' })
     } 
-    else if (isNaN(event.target.value) == true) {
+    else if (isNaN(event.target.value) === true) {
         this.setState({ errorText: 'Por favor coloque apenas numeros' })
       //desabilitar o 'procure'
-    }else if (event.target.value.replace(/\s/g,"") == '') {
+    }else if (event.target.value.replace(/\s/g,"") === '') {
         this.setState({ errorText: 'Por favor coloque apenas numeros' })
       //desabilitar o 'procure'
     }else {
