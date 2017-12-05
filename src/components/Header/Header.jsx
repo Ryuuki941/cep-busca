@@ -3,9 +3,14 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import Variable from '../Variable/Variable'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+
+const style = {
+    margin: 12,
+  };
 
 class Header extends Component{
     constructor(props) {
@@ -30,6 +35,13 @@ class Header extends Component{
               <MenuItem onClick={this.handleClose}>Menu Item</MenuItem>
               <MenuItem onClick={this.handleClose}>Menu Item 2</MenuItem>
             </Drawer>
+            <RaisedButton 
+            label="Primary" 
+            primary={true} 
+            style={style}
+            onClick ={() =>  window.alert(Variable.CEP.value)}
+            />
+
           </div>
         );
       }

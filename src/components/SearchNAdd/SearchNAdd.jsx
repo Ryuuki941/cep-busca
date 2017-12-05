@@ -3,9 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
-
-
+import Variable from '../Variable/Variable'
 
 
 const customContentStyle = {
@@ -13,29 +11,7 @@ const customContentStyle = {
   maxWidth: 'none',
 };
 
-var CEP = document.getElementsByName('CEP');
-
- 
-/*ar validate = values => {
-    const CEPField = 'CEP'
-    var errors
-    if (!CEPField) {
-        errors
-      }
-    if (CEPField.length < 8 || CEPField.size > 8 ) {
-      errors = 'Tamanho incorreto, necessita ter 8 digitos'
-    }
-    return errors
-  }*/
-
-  /*var renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-    <TextField hintText={label}
-      floatingLabelText={label}
-      errorText={touched && error}
-      {...input}
-      {...custom}
-    />
-  )*/
+Variable.CEP = document.getElementsByName('CEP');
 
  class SearchNAdd extends React.Component {
   state = {
@@ -46,10 +22,15 @@ var CEP = document.getElementsByName('CEP');
     this.setState({open: true});
   };
 
-  handleClose = () => {
+  
+
+  handleCloseSearch = () => {
     this.setState({open: false});
-    var CEP = document.getElementById('CEP-value');
-    window.alert(CEP.value);
+    Variable.CEP = document.getElementById('CEP-value');
+    window.alert(Variable.CEP.value);
+  };
+  handleCloseNormal = () => {
+    this.setState({open: false});
   };
  
 
@@ -60,12 +41,12 @@ var CEP = document.getElementsByName('CEP');
       <FlatButton
         label="Cancelar"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handleCloseNormal}
       />,
       <FlatButton
         label="Procure"
         primary={true}
-        onClick={this.handleClose}
+        onClick={this.handleCloseSearch}
       />, 
     ];
 
