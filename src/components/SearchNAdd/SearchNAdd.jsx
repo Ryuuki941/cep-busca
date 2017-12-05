@@ -5,20 +5,37 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 
-const TextFieldExampleSimple = () => (
-    <div>
-    <TextField
-      hintText="Hint Text"
-    /><br />
-    </div>
-);
+
 
 
 const customContentStyle = {
   width: '100%',
   maxWidth: 'none',
-  height: '40%',
 };
+
+var CEP = document.getElementsByName('CEP');
+
+ 
+/*ar validate = values => {
+    const CEPField = 'CEP'
+    var errors
+    if (!CEPField) {
+        errors
+      }
+    if (CEPField.length < 8 || CEPField.size > 8 ) {
+      errors = 'Tamanho incorreto, necessita ter 8 digitos'
+    }
+    return errors
+  }*/
+
+  /*var renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+    <TextField hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      {...custom}
+    />
+  )*/
 
  class SearchNAdd extends React.Component {
   state = {
@@ -31,7 +48,12 @@ const customContentStyle = {
 
   handleClose = () => {
     this.setState({open: false});
+    var CEP = document.getElementById('CEP-value');
+    window.alert(CEP.value);
   };
+ 
+
+
 
   render() {
     const actions = [
@@ -44,7 +66,7 @@ const customContentStyle = {
         label="Procure"
         primary={true}
         onClick={this.handleClose}
-      />,
+      />, 
     ];
 
     return (
@@ -58,15 +80,16 @@ const customContentStyle = {
           open={this.state.open}
         > 
           <TextField
-           name="CEP" 
+           id="CEP-value" 
            label="CEP" 
-           hintText="Digite um CEP (8 digitos apenas)"
            floatingLabelText="Digite um CEP"
-           />
+           value = {this.textFieldValue}           
+           />           
         </Dialog>
       </div>
     );
   }
+
 }
 
-export default SearchNAdd
+export default SearchNAdd;
