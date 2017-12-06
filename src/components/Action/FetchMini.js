@@ -5,11 +5,10 @@ var size = Jeson.length;
 var endereco;
 var cep;
 var object;
-var objArray;
 
 var arrayObject  = function(Jeson){
-for( var i = 0; i < size ; i++){
-  var thisCEP = Jeson.indexOf(i);
+
+  var thisCEP = Jeson;
   var stringInfo = JSON.parse(thisCEP);
 
   //stringication
@@ -18,10 +17,7 @@ for( var i = 0; i < size ; i++){
   cep = stringInfo.cep;
 
   object ={cep, endereco};
-
-  objArray.push(object);
-  return objArray;
-}
+  return object;
 }
 
 export default arrayObject;

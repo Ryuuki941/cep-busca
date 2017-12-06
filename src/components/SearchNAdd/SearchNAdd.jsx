@@ -9,6 +9,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/clear';
 import { green300, red300 } from 'material-ui/styles/colors';
 import doAPI from '../Action/ConnAPI'
+import doArray from '../Action/FetchCard'
 
 const style1 = {
   margin: 0,
@@ -48,10 +49,12 @@ Variable.CEP = document.getElementsByName('CEP');
 
  class SearchNAdd extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
-
+  // array = {
+  //   ceps: []
+  // };
  
   handleOpen = () => {
     this.setState({open: true});
@@ -59,7 +62,12 @@ Variable.CEP = document.getElementsByName('CEP');
 
   handleCloseSearch = () => {
     this.setState({open: false});
-    doAPI();
+    doAPI().then(cep => {
+      console.log(cep);
+     // this.setState({ceps: [cep]})
+     // this.array.ceps.push(cep)
+    })
+
   };
   handleCloseNormal = () => {
     this.setState({open: false});
@@ -100,6 +108,9 @@ Variable.CEP = document.getElementsByName('CEP');
 
     return (
       <div>
+        {/* {this.array.ceps.map((cep, index) => (
+      <li>{cep}</li>   */}
+      ))}
         <FloatingActionButton 
             id="add"
             style={style1} 

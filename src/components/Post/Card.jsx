@@ -1,4 +1,4 @@
-/*import React from 'react';
+import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
 const CardExampleExpandable = (cep, enderecoCompleto) => (
@@ -12,4 +12,4 @@ const CardExampleExpandable = (cep, enderecoCompleto) => (
   </Card>
 );
 
-export default CardExampleExpandable;*/
+export default CardExampleExpandable;
